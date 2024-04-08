@@ -5,14 +5,19 @@ basic.forever(function () {
     } else if (input.buttonIsPressed(Button.B)) {
         radio.sendString("B")
     } else if (pins.digitalReadPin(DigitalPin.P8) == 0) {
+        pins.digitalWritePin(DigitalPin.P8, 1)
         radio.sendString("Z")
     } else if (pins.digitalReadPin(DigitalPin.P13) == 0) {
-        radio.sendString("Verte")
+        pins.digitalWritePin(DigitalPin.P13, 1)
+        radio.sendString("Vert")
     } else if (pins.digitalReadPin(DigitalPin.P14) == 0) {
+        pins.digitalWritePin(DigitalPin.P14, 1)
         radio.sendString("Jaune")
     } else if (pins.digitalReadPin(DigitalPin.P15) == 0) {
+        pins.digitalWritePin(DigitalPin.P15, 1)
         radio.sendString("Rouge")
     } else if (pins.digitalReadPin(DigitalPin.P16) == 0) {
+        pins.digitalWritePin(DigitalPin.P16, 1)
         radio.sendString("Bleu")
     } else {
         if (pins.analogReadPin(AnalogPin.P2) > 550 && (pins.analogReadPin(AnalogPin.P1) > 400 && pins.analogReadPin(AnalogPin.P1) < 600)) {
@@ -24,11 +29,7 @@ basic.forever(function () {
         } else if (pins.analogReadPin(AnalogPin.P1) > 550 && (pins.analogReadPin(AnalogPin.P2) > 400 && pins.analogReadPin(AnalogPin.P2) < 600)) {
             radio.sendString("Droite")
         } else {
-            pins.digitalWritePin(DigitalPin.P8, 1)
-            pins.digitalWritePin(DigitalPin.P13, 1)
-            pins.digitalWritePin(DigitalPin.P14, 1)
-            pins.digitalWritePin(DigitalPin.P15, 1)
-            pins.digitalWritePin(DigitalPin.P16, 1)
+            radio.sendString("Stop")
         }
     }
 })
