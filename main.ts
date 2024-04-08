@@ -22,8 +22,8 @@ basic.forever(function () {
         pins.digitalWritePin(DigitalPin.P16, 1)
         radio.sendString("Bleu")
     } else {
-        x = Math.map(pins.analogReadPin(AnalogPin.P1), 1023, 0, -100, 100)
-        y = Math.map(pins.analogReadPin(AnalogPin.P2), 1023, 0, -100, 100)
+        x = Math.map(pins.analogReadPin(AnalogPin.P1), 0, 1023, -100, 100)
+        y = Math.map(pins.analogReadPin(AnalogPin.P2), 0, 1023, -100, 100)
         radio.sendValue("x", x)
         radio.sendValue("y", y)
     }
