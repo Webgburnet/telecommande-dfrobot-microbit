@@ -1,3 +1,5 @@
+let y = 0
+let x = 0
 radio.setGroup(255)
 basic.forever(function () {
     if (input.buttonIsPressed(Button.A)) {
@@ -20,16 +22,9 @@ basic.forever(function () {
         pins.digitalWritePin(DigitalPin.P16, 1)
         radio.sendString("Bleu")
     } else {
-        if (pins.analogReadPin(AnalogPin.P2) > 550 && (pins.analogReadPin(AnalogPin.P1) > 400 && pins.analogReadPin(AnalogPin.P1) < 600)) {
-            radio.sendString("Avancer")
-        } else if (pins.analogReadPin(AnalogPin.P2) < 450 && (pins.analogReadPin(AnalogPin.P1) > 400 && pins.analogReadPin(AnalogPin.P1) < 600)) {
-            radio.sendString("Reculer")
-        } else if (pins.analogReadPin(AnalogPin.P1) < 450 && (pins.analogReadPin(AnalogPin.P2) > 400 && pins.analogReadPin(AnalogPin.P2) < 600)) {
-            radio.sendString("Gauche")
-        } else if (pins.analogReadPin(AnalogPin.P1) > 550 && (pins.analogReadPin(AnalogPin.P2) > 400 && pins.analogReadPin(AnalogPin.P2) < 600)) {
-            radio.sendString("Droite")
-        } else {
-            radio.sendString("Stop")
-        }
+        x = Math.map(pins.analogReadPin(AnalogPin.P1), 1023, 0, -100, 100)
+        y = Math.map(pins.analogReadPin(AnalogPin.P2), 1023, 0, -100, 100)
+        radio.sendValue("x", x)
+        radio.sendValue("y", y)
     }
 })
